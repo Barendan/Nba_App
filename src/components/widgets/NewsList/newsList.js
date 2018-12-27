@@ -5,11 +5,13 @@ import axios from 'axios';
 
 import { URL } from '../../../config';
 import style from './newsList.css';
-import Button from '../Buttons/buttons'
+import Button from '../Buttons/buttons';
+import CardInfo from '../../widgets/CardInfo/cardInfo';
 
 class NewsList extends Component {
 
 	state = {
+		teams:[],
 		items:[],
 		start:this.props.start,
 		end:this.props.start + this.props.amount,
@@ -21,6 +23,16 @@ class NewsList extends Component {
 	}
 
 	request = (start,end) => {
+		if(this.state.teams.length < 1)  {
+			axios.get(`${URL}/teams`)
+			.then( response => {
+				this.setState({
+					teams:response.data
+				})
+			})
+		}
+
+
 		axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
 		.then( response => {
 			this.setState({
@@ -51,9 +63,8 @@ class NewsList extends Component {
 						<div>
 							<div className={style.newsList_item}>
 								<Link to={`/articles/${item.id}`}>
-									teams
+									<CardInfo teams={this.state.teams} team={item.team} date={item.date} />
 									<h2>{item.title}</h2>
-
 								</Link>
 							</div>	
 						</div>
@@ -70,7 +81,7 @@ class NewsList extends Component {
 		return(
 			<div>
 				<TransitionGroup
-					componen="div"
+					component="div"
 					className="list"
 				> 
 					{ this.renderNews(this.props.type) }
