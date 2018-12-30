@@ -42,7 +42,7 @@ class NewsArticles extends Component {
 			<div className={styles.articleWrapper}>
 				<Header
 					teamData={team[0]}
-					data={article.date}
+					date={article.date}
 					author={article.author}
 				/>
 				<Body/>

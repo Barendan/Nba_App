@@ -4,7 +4,7 @@ import styles from '../articles.css';
 const teamNfo = (props) => (
 	<div className={styles.articleTeamHeader}>
 		<div className={styles.left}
-			 styles={{
+			 style={{
 			 	background: `url('/images/teams/${props.team.logo}')`
 			 }}>
 		</div>
