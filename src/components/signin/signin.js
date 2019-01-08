@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './signin.css';
 
+import FormField from '../widgets/FormFields/formFields';
 
 
 class SignIn extends Component {
@@ -44,10 +45,21 @@ class SignIn extends Component {
 		}
 	}
 
+	updateForm = (element) => {
+		
+	}
+
 	render(){
 		return(
-			<div>
-				sign in
+			<div className={styles.logContainer}>
+				<form>
+					<FormField 
+						id={'email'}
+						formdata={this.state.formdata.email}
+						change={(element)=>this.updateForm(element)}
+					/>
+
+				</form>
 			</div>
 		)
 	}
