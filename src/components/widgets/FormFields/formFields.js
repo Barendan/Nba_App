@@ -11,7 +11,12 @@ const FormFields = ({formdata, change, id}) => {
 			case('input'):
 				formTemplate = (
 					<div>
-						input
+						<input
+							{...formdata.config}
+							value={formdata.value}
+							onBlur={(event) => change({event,id,blur:true})}
+							onChange={(event) => change({event,id,blur:false})}
+						/>
 					</div>
 				)
 				break;
