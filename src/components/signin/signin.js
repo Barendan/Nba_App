@@ -118,7 +118,7 @@ class SignIn extends Component {
 						dataToSubmit.email,
 						dataToSubmit.password
 					).then(()=>{
-						this.props.history('/')	
+						this.props.history.push('/')
 					}).catch( error =>{
 						this.setState({
 							loading: false,
