@@ -7,6 +7,8 @@ import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html'; 
 
+import Uploader from '../widgets/FileUploader/fileUploader';
+
 
 class Dashboard extends Component {
 
@@ -196,6 +198,8 @@ class Dashboard extends Component {
 			<div className={styles.postContainer}>
 				<form onSubmit={this.submitForm}>
 					<h2>Add Post</h2>
+
+					<Uploader />
 
 					<FormField 
 						id={'author'}
