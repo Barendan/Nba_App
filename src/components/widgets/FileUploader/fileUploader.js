@@ -26,7 +26,7 @@ class Uploader extends Component {
 	}
 
 	handleUploadSuccess = (filename) => {
-		console.log(filename);
+
 		this.setState({
 			name: filename,
 			progress: 100,
@@ -39,6 +39,7 @@ class Uploader extends Component {
 			this.setState({fileURL:url})
 		})
 
+		this.props.filename(filename)
 	}
 
 
@@ -50,13 +51,23 @@ class Uploader extends Component {
 				<FileUploader
 					accept="image/*"
 					name="image"
-					randomizeFileName
+					randomizeFilename
 					storageRef={firebase.storage().ref('images')}
 					onUploadStart={this.handleUploadStart}
 					onUploadError={this.handleUploadError}
 					onUploadSuccess={this.handleUploadSuccess}
 					onProgress={this.handleProgress}
 				/>
+				{ this.state.isUploading ?
+					<p>Progress:{this.state.progress}</p>
+					:null
+				}
+				{ this.state.fileURL ?
+					<img style={{
+						width:'300px'
+					}} src={this.state.fileURL}/>
+					:null
+				}
 
 			</div>
 		)
